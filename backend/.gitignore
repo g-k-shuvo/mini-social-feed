@@ -1,0 +1,17 @@
+node_modules/
+dist/
+coverage/
+
+# Secrets — nothing in here is ever committed
+.env
+.env.*
+!.env.example
+*service-account*.json
+google-services.json
+*.pem
+*.key
+
+# Local noise
+.DS_Store
+*.log
+.vitest/

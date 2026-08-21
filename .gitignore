@@ -1,0 +1,24 @@
+node_modules/
+dist/
+.expo/
+coverage/
+*.log
+.DS_Store
+
+# Secrets — never committed
+.env
+.env.*
+!.env.example
+*service-account*.json
+google-services.json
+*.keystore
+*.jks
+*.apk
+
+# Generated native projects
+/mobile/android
+/mobile/ios
+
+# Local scratch
+.impeccable/review/
+.impeccable/qualitybar/
