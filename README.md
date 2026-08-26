@@ -128,10 +128,14 @@ cd backend && npm test
 | API documentation | ✅ [backend/README.md](backend/README.md#api-reference) |
 | Setup instructions | ✅ both READMEs |
 | **Deployed API URL** | ✅ https://mini-social-feed-api.onrender.com |
-| **APK on Google Drive** | ⬜ `eas build -p android --profile preview`, then upload |
-| **Firebase project** | ⬜ needs your own project — [setup](backend/README.md#firebase-setup) |
+| **APK on Google Drive** | ✅ [Download](https://drive.google.com/file/d/1DBH7zoA4_4ubnZ5kammNAVcjjA9PxNtt/view?usp=sharing) |
+| **Firebase project** | ✅ configured; push verified server-side |
 
-The three unchecked items need credentials only you can supply: a Firebase project, a hosting account, and a Drive account. Everything they depend on is built and waiting. Add the APK link and the live URL here when they exist.
+**APK** — 68 MB, `SHA-256 b5fc7d45e6ad46daf0175da91fe822ffc13de06181e8d1aedc5de0a28c5be774`. A universal build covering all four ABIs, so it installs on any device; a per-architecture split would be ~30 MB but needs one APK per architecture.
+
+**Live API** — https://mini-social-feed-api.onrender.com. Free instance, so it sleeps after ~15 minutes idle and takes roughly 50 seconds to wake. Hit `/health` once before installing and the app will feel instant.
+
+**Demo accounts** — `priya`, `rahul`, `nadia`, `tomas`, `ify`, `kenji`, all with password `demo1234`. The feed is seeded, so the app opens onto real content.
 
 ---
 
