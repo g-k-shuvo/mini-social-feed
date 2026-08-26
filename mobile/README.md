@@ -32,7 +32,7 @@ After the first build, day-to-day work is just `npm start`.
 |---|---|
 | Android **emulator** | `http://10.0.2.2:4000/api/v1` — `10.0.2.2` is the emulator's alias for your machine's localhost |
 | Physical device on your Wi‑Fi | `http://192.168.x.x:4000/api/v1` — your machine's LAN address |
-| Shipped APK | Your deployed HTTPS URL |
+| Shipped APK | `https://mini-social-feed-api.onrender.com/api/v1` (already set in `eas.json`) |
 
 `localhost` from the device means *the device*, which is why the emulator needs `10.0.2.2`. Getting this wrong produces "Can't reach the server" and nothing else.
 
@@ -73,7 +73,6 @@ npm install -g eas-cli
 eas login
 eas build:configure
 
-# Set the deployed API URL in eas.json under build.preview.env first
 eas build -p android --profile preview
 ```
 

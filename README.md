@@ -30,7 +30,15 @@ npm install && npm run setup && npm run dev
 
 Sign in as **`priya` / `demo1234`** (also `rahul`, `nadia`, `tomas`, `ify`, `kenji`).
 
+Or skip the setup entirely and hit the live API:
+
+```bash
+curl https://mini-social-feed-api.onrender.com/health
+```
+
 Then the app — see [mobile/README.md](mobile/README.md), and note it needs a **development build**, not Expo Go, because it uses real FCM.
+
+> The API is on a free instance that sleeps after ~15 minutes idle and takes roughly 50 seconds to wake. Hit `/health` once first and the app will feel instant.
 
 ---
 
@@ -119,7 +127,7 @@ cd backend && npm test
 | Mobile app, all screens, phone + tablet | ✅ |
 | API documentation | ✅ [backend/README.md](backend/README.md#api-reference) |
 | Setup instructions | ✅ both READMEs |
-| **Deployed API URL** | ⬜ `render.yaml` is ready — deploy, then set the URL in `mobile/eas.json` |
+| **Deployed API URL** | ✅ https://mini-social-feed-api.onrender.com |
 | **APK on Google Drive** | ⬜ `eas build -p android --profile preview`, then upload |
 | **Firebase project** | ⬜ needs your own project — [setup](backend/README.md#firebase-setup) |
 

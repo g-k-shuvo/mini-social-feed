@@ -16,7 +16,7 @@
         "buildType": "apk"
       },
       "env": {
-        "EXPO_PUBLIC_API_URL": "https://REPLACE-WITH-YOUR-DEPLOYED-API/api/v1"
+        "EXPO_PUBLIC_API_URL": "https://mini-social-feed-api.onrender.com/api/v1"
       }
     },
     "production": {
