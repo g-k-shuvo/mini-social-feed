@@ -12,6 +12,10 @@ const schema = z.object({
   PORT: z.coerce.number().int().min(1).max(65535).default(4000),
 
   DATABASE_URL: z.string().min(1, 'DATABASE_URL is required'),
+  // Read by Prisma directly for migrations, not by the app at runtime. Declared
+  // here so a deployment missing it fails at boot with a named variable rather
+  // than at the next `migrate deploy`.
+  DIRECT_URL: z.string().min(1, 'DIRECT_URL is required (use DATABASE_URL locally)'),
 
   JWT_ACCESS_SECRET: z
     .string()

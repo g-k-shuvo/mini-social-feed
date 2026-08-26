@@ -1,0 +1,50 @@
+# Render blueprint. Point Render at this repo and it provisions the service
+# from here rather than from a dozen fields in a web form.
+#
+# The database is NOT declared here on purpose. Render's own free Postgres
+# expires after 90 days, which would quietly kill a submitted deliverable
+# mid-review. Bring a Neon (or Supabase) free database instead and paste its
+# two connection strings in — those do not expire.
+
+services:
+  - type: web
+    name: mini-social-feed-api
+    runtime: node
+    plan: free
+    rootDir: backend
+    region: oregon
+
+    # migrate deploy runs on every build, and uses DIRECT_URL because a
+    # connection pooler cannot run DDL.
+    buildCommand: npm ci && npx prisma generate && npm run build && npx prisma migrate deploy
+    startCommand: npm start
+
+    # Render restarts the instance if this stops answering. The route is
+    # unauthenticated and checks the database, so it fails loudly rather than
+    # reporting a healthy process in front of a dead connection.
+    healthCheckPath: /health
+
+    envVars:
+      - key: NODE_ENV
+        value: production
+
+      - key: LOG_LEVEL
+        value: info
+
+      # Minted by Render, never typed by a human and never in the repo.
+      - key: JWT_ACCESS_SECRET
+        generateValue: true
+
+      # sync: false means "prompt me, do not read it from this file".
+      # Neon → Connection Details → Pooled connection string.
+      - key: DATABASE_URL
+        sync: false
+
+      # Neon → the same panel → uncheck "Connection pooling".
+      - key: DIRECT_URL
+        sync: false
+
+      # base64 of the Firebase service-account JSON:
+      #   node -e "console.log(Buffer.from(require('fs').readFileSync('sa.json')).toString('base64'))"
+      - key: FIREBASE_SERVICE_ACCOUNT_B64
+        sync: false

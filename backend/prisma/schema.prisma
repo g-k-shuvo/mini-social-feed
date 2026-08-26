@@ -13,8 +13,13 @@ generator client {
 }
 
 datasource db {
-  provider   = "postgresql"
+  provider = "postgresql"
+  // Serverless Postgres (Neon, Supabase) puts a connection pooler in front of
+  // the database. The pooler is right for the running app — a free web service
+  // that sleeps and wakes should not hold direct connections — but it cannot
+  // run DDL, so migrations need the unpooled endpoint.
   url        = env("DATABASE_URL")
+  directUrl  = env("DIRECT_URL")
   extensions = [citext]
 }
 

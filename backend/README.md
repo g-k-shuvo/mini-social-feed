@@ -15,6 +15,7 @@ Node.js + Express + PostgreSQL REST API for a text-only social feed: auth, posts
 - [Firebase setup](#firebase-setup)
 - [Architecture](#architecture)
 - [Testing](#testing)
+- [Deploying](#deploying)
 - [Troubleshooting](#troubleshooting)
 
 ---
@@ -57,7 +58,8 @@ Every variable is validated at boot by a Zod schema. A missing or malformed valu
 |---|---|---|---|
 | `NODE_ENV` | yes | `development` | Controls error verbosity and log format |
 | `PORT` | no | `4000` | HTTP port |
-| `DATABASE_URL` | yes | `postgresql://minisocial:minisocial@localhost:5433/minisocial?schema=public` | Prisma connection string |
+| `DATABASE_URL` | yes | `postgresql://minisocial:minisocial@localhost:5433/minisocial?schema=public` | Prisma connection string (pooled, in production) |
+| `DIRECT_URL` | yes | same as `DATABASE_URL` locally | Unpooled connection for migrations. A pooler cannot run DDL |
 | `JWT_ACCESS_SECRET` | yes | 32+ random characters | Access-token signing key |
 | `JWT_ACCESS_TTL` | no | `15m` | Access-token lifetime |
 | `REFRESH_TTL_DAYS` | no | `7` | Refresh-token lifetime |
@@ -341,6 +343,27 @@ Eight of them exist because each maps to a specific bug this design prevents:
 6. A self-like creates no notification row.
 7. A malformed cursor returns 400, not 500.
 8. A soft-deleted post is absent from the feed and 404s by id.
+
+---
+
+## Deploying
+
+`render.yaml` at the repo root is a Render blueprint: New → Blueprint → pick this repo, and the service is provisioned from that file rather than from a dozen web-form fields.
+
+**Bring your own database.** The blueprint deliberately does not declare one. Render's free Postgres expires after 90 days, which would quietly kill a submitted deliverable mid-review. [Neon](https://neon.tech)'s free tier does not expire.
+
+1. Create a Neon project. From **Connection Details**, copy two strings:
+   - **pooled** (has `-pooler` in the host) → `DATABASE_URL`
+   - **direct** (untick *Connection pooling*) → `DIRECT_URL`
+   Both need `?sslmode=require`.
+2. Deploy the blueprint. Render prompts for `DATABASE_URL`, `DIRECT_URL` and `FIREBASE_SERVICE_ACCOUNT_B64`, and mints `JWT_ACCESS_SECRET` itself — that one is never typed by a human or stored in the repo.
+3. Seed once, from the Render shell: `npm run seed`.
+
+**Verify:** `curl https://<your-service>.onrender.com/health` → `{"status":"ok","db":"ok"}`.
+
+> The free web service sleeps after ~15 minutes idle and takes roughly 50 seconds to wake. The app already handles this: a 20-second client timeout with *"That took too long. The server may be waking up."* rather than a bare failure. Warm it up before a demo.
+
+Why the two URLs: the pooler in front of `DATABASE_URL` is right for an instance that sleeps and wakes, but it cannot run DDL, so Prisma is configured with `directUrl` and migrations use the unpooled endpoint.
 
 ---
 

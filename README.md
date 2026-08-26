@@ -119,7 +119,7 @@ cd backend && npm test
 | Mobile app, all screens, phone + tablet | ✅ |
 | API documentation | ✅ [backend/README.md](backend/README.md#api-reference) |
 | Setup instructions | ✅ both READMEs |
-| **Deployed API URL** | ⬜ deploy to Railway/Render, then set it in `mobile/eas.json` |
+| **Deployed API URL** | ⬜ `render.yaml` is ready — deploy, then set the URL in `mobile/eas.json` |
 | **APK on Google Drive** | ⬜ `eas build -p android --profile preview`, then upload |
 | **Firebase project** | ⬜ needs your own project — [setup](backend/README.md#firebase-setup) |
 
