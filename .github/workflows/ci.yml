@@ -26,6 +26,9 @@ jobs:
 
     env:
       DATABASE_URL: postgresql://minisocial:minisocial@localhost:5433/minisocial?schema=public
+      # Prisma requires directUrl to resolve even when it is the same endpoint.
+      # In production these differ: pooled for the app, unpooled for migrations.
+      DIRECT_URL: postgresql://minisocial:minisocial@localhost:5433/minisocial?schema=public
       TEST_ADMIN_URL: postgresql://minisocial:minisocial@localhost:5433/postgres
 
     steps:

@@ -16,6 +16,8 @@ process.env.NODE_ENV = 'test';
 process.env.DATABASE_URL =
   process.env.TEST_DATABASE_URL ??
   `postgresql://minisocial:minisocial@localhost:5433/${TEST_DB}?schema=public`;
+// Prisma resolves directUrl at schema-load time even for the test database.
+process.env.DIRECT_URL = process.env.DATABASE_URL;
 process.env.JWT_ACCESS_SECRET =
   process.env.JWT_ACCESS_SECRET ?? 'test-secret-that-is-definitely-long-enough-32';
 process.env.FIREBASE_SERVICE_ACCOUNT_B64 = '';
