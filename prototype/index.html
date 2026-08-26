@@ -208,6 +208,11 @@ body {
   overflow: hidden;
   background: #000;
   transform-origin: top center;
+  /* content-box, against the global border-box: width and height are the
+     device viewport, and the bezel sits outside it. Under border-box the
+     bezel eats into the viewport and a "411 x 891 dp" frame silently renders
+     393 x 873. */
+  box-sizing: content-box;
 }
 
 .shell-phone .frame {
@@ -315,10 +320,12 @@ body {
   --amber:    #BE3617;
   --amber-2:  #9A4A16;
   --amber-bg: rgba(190,54,23,.10);
-  --star:     #131C2E;
+  /* all three derive from --ink; they trailed an earlier, warmer ink until
+     the light theme was recooled to the photographic plate */
+  --star:     #101A2B;
   --on-amber: #FFF6F2;
-  --scrim:    rgba(19,28,46,.42);
-  --skel:     rgba(19,28,46,.08);
+  --scrim:    rgba(16,26,43,.42);
+  --skel:     rgba(16,26,43,.08);
   --star-a:   .34;
 }
 
@@ -500,18 +507,25 @@ body {
 .app ::placeholder { color: var(--ink-2); opacity: .8; }
 .app input, .app textarea { caret-color: var(--amber); }
 
-/* the hour axis — one unbroken constellation line joining every mark,
-   dotted the way a chart plate joins its stars */
+/* The hour axis is a constellation, not a rule: one unbroken dotted figure
+   drawn through the centre of every magnitude mark, the way a chart plate
+   joins its stars. The marks are offset a few pixels either side of the
+   nominal axis so the line bends between them and reads as a figure. */
 .axis-wrap { position: relative; }
-.axis-wrap::before {
-  content: "";
+
+.thread {
   position: absolute;
-  left: 27px;
+  left: 0;
   top: 0;
   bottom: 0;
-  width: 0;
-  border-left: 1px dotted var(--axis);
+  width: 44px;
+  height: 100%;
+  pointer-events: none;
+  color: var(--axis);
+  z-index: 0;
 }
+
+.obj > .mark, .obj > div { position: relative; z-index: 1; }
 
 /* time-block separator — a real void, not a gutter */
 .epoch {
@@ -1617,11 +1631,27 @@ function epochOf(t) {
   return h < 12 ? 'Tonight' : h < 24 ? 'Earlier today' : 'Yesterday and before';
 }
 
-function objRow(p, d, sel) {
+/**
+ * How far this object sits off the nominal axis. Deterministic from the id, so
+ * a post always lands in the same place, and bounded to ±9 within the 44px gutter so the figure bends
+ * without the marks ever leaving their gutter.
+ */
+const offsetOf = (id) => ((hash(id) % 19) - 9);
+
+function objRow(p, d, sel, nextDx) {
   const u = USERS[p.author];
   const size = magOf(p.likes);
-  return `<article class="obj" data-sel="${sel ? 1 : 0}">
-    <span class="mark"><i style="width:${size}px;height:${size}px"></i></span>
+  const dx = offsetOf(p.id);
+  // This row's segment of the constellation, from its own mark to wherever the
+  // next one sits. Declarative, so it cannot race the render the way a
+  // measured polyline does.
+  const thread = nextDx === undefined ? '' :
+    `<svg class="thread" preserveAspectRatio="none" aria-hidden="true">
+       <line x1="${22 + dx}" y1="25" x2="${22 + nextDx}" y2="100%"
+             stroke="currentColor" stroke-width="1" stroke-dasharray="2 3" stroke-linecap="round"/>
+     </svg>`;
+  return `<article class="obj" data-sel="${sel ? 1 : 0}">${thread}
+    <span class="mark"><i style="width:${size}px;height:${size}px;transform:translateX(${dx}px)"></i></span>
     <div>
       <button class="obj-open" data-act="open" data-id="${p.id}">
         <span class="obj-head">
@@ -1683,17 +1713,28 @@ function feedList(d, selId) {
   }
 
   let out = '', last = null;
-  for (const p of list) {
+  for (let i = 0; i < list.length; i++) {
+    const p = list[i];
     const e = epochOf(p.at);
     if (e !== last) {
       out += `<div class="epoch"><span class="cap">${e}</span><span class="line"></span></div>`;
       last = e;
     }
-    out += objRow(p, d, selId === p.id);
+    const next = list[i + 1];
+    out += objRow(p, d, selId === p.id, next ? offsetOf(next.id) : undefined);
   }
+  // The polyline is written after layout, once the marks have real positions.
   return `<div class="axis-wrap">${out}</div>`;
 }
 
+/**
+ * Joins every magnitude mark into one unbroken dotted figure.
+ *
+ * Measured rather than declared: the marks sit at different heights and at
+ * different offsets, so the only honest way to connect their centres is to
+ * read them back off the laid-out DOM. A straight rule beside the marks would
+ * be a divider; a line that bends through them is a constellation.
+ */
 function band(d) {
   const list = visible();
   const scope = S.filter ? `<em>@${esc(S.filter)}</em>` : 'All sky';

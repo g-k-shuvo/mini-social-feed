@@ -106,8 +106,10 @@ export const type = {
   display: { fontFamily: font.display, fontSize: 34, lineHeight: 38 },
   headline: { fontFamily: font.display, fontSize: 25, lineHeight: 30 },
   title: { fontFamily: font.display, fontSize: 20, lineHeight: 24 },
-  who: { fontFamily: font.display, fontSize: 17, lineHeight: 22 },
-  body: { fontFamily: font.body, fontSize: 16, lineHeight: 25 },
+  // 16.5 and 15.5, not 17 and 16: the ramp is the prototype's, and rounding
+  // a port's sizes to whole numbers is how two surfaces quietly diverge.
+  who: { fontFamily: font.display, fontSize: 16.5, lineHeight: 22 },
+  body: { fontFamily: font.body, fontSize: 15.5, lineHeight: 24 },
   bodySmall: { fontFamily: font.body, fontSize: 14, lineHeight: 21 },
   label: { fontFamily: font.bodySemi, fontSize: 10, letterSpacing: 1.7 },
   labelLarge: { fontFamily: font.bodyMedium, fontSize: 12, letterSpacing: 0.8 },
@@ -133,6 +135,22 @@ export function magnitude(likes: number): number {
   if (likes >= 6) return RAMP[2];
   if (likes >= 2) return RAMP[1];
   return RAMP[0];
+}
+
+/** Where the mark column's centre sits, before jitter. */
+export const AXIS_X = 22;
+
+/**
+ * How far an object sits off the nominal axis. Deterministic from the id, so a
+ * post always lands in the same place, and bounded to ±9, inside the 44 dp gutter, so the constellation
+ * bends without a mark ever leaving its gutter.
+ *
+ * Without this the marks are collinear and the joining line is just a rule.
+ */
+export function offsetOf(id: string): number {
+  let h = 0;
+  for (let i = 0; i < id.length; i++) h = (h * 31 + id.charCodeAt(i)) >>> 0;
+  return (h % 19) - 9;
 }
 
 /**

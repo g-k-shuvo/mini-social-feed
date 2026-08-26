@@ -15,12 +15,24 @@ let messaging: admin.messaging.Messaging | null = null;
 if (env.firebaseEnabled) {
   try {
     const json = Buffer.from(env.FIREBASE_SERVICE_ACCOUNT_B64, 'base64').toString('utf8');
-    const credentials = JSON.parse(json) as admin.ServiceAccount;
+    const credentials = JSON.parse(json) as admin.ServiceAccount & {
+      project_id?: string;
+      client_email?: string;
+    };
     const app = admin.apps.length
       ? admin.app()
       : admin.initializeApp({ credential: admin.credential.cert(credentials) });
     messaging = app.messaging();
-    logger.info({ projectId: (credentials as { projectId?: string }).projectId }, 'firebase ready');
+    // The file is snake_case; reading only `projectId` logged undefined and
+    // defeated the point of the line, which is to prove you wired the project
+    // you meant to. Never log client_email's sibling — the private key.
+    logger.info(
+      {
+        projectId: credentials.project_id ?? credentials.projectId,
+        clientEmail: credentials.client_email ?? credentials.clientEmail,
+      },
+      'firebase ready',
+    );
   } catch (err) {
     // A broken credential is a configuration bug worth shouting about, but it
     // must not take the API down: everything except push still works.

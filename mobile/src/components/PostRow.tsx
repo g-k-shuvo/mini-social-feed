@@ -9,8 +9,9 @@
 import React, { memo, useEffect, useRef } from 'react';
 import { Animated, Easing, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useTheme } from '../theme/ThemeProvider';
-import { HIT, magnitude, radius, space, type as T } from '../theme/tokens';
+import { AXIS_X, HIT, magnitude, offsetOf, radius, space, type as T } from '../theme/tokens';
 import { Reply, StarMark } from './Icons';
+import Svg, { Line } from 'react-native-svg';
 import type { Post } from '../api/types';
 import { relativeTime } from '../lib/time';
 
@@ -20,11 +21,15 @@ interface Props {
   onLike: (id: string) => void;
   selected?: boolean;
   dimmed?: boolean;
+  /** Offset of the next object down, so this row can draw the segment of the
+   *  constellation that reaches it. Undefined on the last row. */
+  nextDx?: number;
 }
 
-function PostRowInner({ post, onOpen, onLike, selected, dimmed }: Props) {
-  const { c, isLight } = useTheme();
+function PostRowInner({ post, onOpen, onLike, selected, dimmed, nextDx }: Props) {
+  const { c } = useTheme();
   const size = magnitude(post.likeCount);
+  const dx = offsetOf(post.id);
 
   /** The acquisition pulse: one ring out, once, when a like lands. */
   const pulse = useRef(new Animated.Value(0)).current;
@@ -52,6 +57,24 @@ function PostRowInner({ post, onOpen, onLike, selected, dimmed }: Props) {
         { borderBottomColor: c.rule, backgroundColor: surface, opacity: dimmed ? 0.74 : 1 },
       ]}
     >
+      {/* This row's segment of the constellation: from its own mark down to
+          wherever the next mark sits. Together the segments make one unbroken
+          dotted figure rather than a straight rule beside the marks. */}
+      {nextDx !== undefined ? (
+        <Svg style={s.thread} pointerEvents="none">
+          <Line
+            x1={AXIS_X + dx}
+            y1={25}
+            x2={AXIS_X + nextDx}
+            y2="100%"
+            stroke={c.axis}
+            strokeWidth={1}
+            strokeDasharray="2 3"
+            strokeLinecap="round"
+          />
+        </Svg>
+      ) : null}
+
       <View style={s.mark}>
         <Animated.View
           pointerEvents="none"
@@ -61,6 +84,7 @@ function PostRowInner({ post, onOpen, onLike, selected, dimmed }: Props) {
               borderColor: c.amber,
               opacity: pulse.interpolate({ inputRange: [0, 1], outputRange: [0.85, 0] }),
               transform: [
+                { translateX: dx },
                 { scale: pulse.interpolate({ inputRange: [0, 1], outputRange: [0.55, 2.4] }) },
               ],
             },
@@ -74,10 +98,11 @@ function PostRowInner({ post, onOpen, onLike, selected, dimmed }: Props) {
             backgroundColor: c.star,
             borderWidth: 3,
             borderColor: selected ? c.sel : c.sky,
+            transform: [{ translateX: dx }],
           }}
         />
         {selected ? (
-          <View style={[s.reticle, { borderColor: c.amber }]} pointerEvents="none" />
+          <View style={[s.reticle, { borderColor: c.amber, transform: [{ translateX: dx }] }]} pointerEvents="none" />
         ) : null}
       </View>
 
@@ -175,6 +200,7 @@ const s = StyleSheet.create({
     paddingBottom: 15,
     borderBottomWidth: 1,
   },
+  thread: { position: 'absolute', left: 0, top: 0, bottom: 0, width: 44 },
   mark: {
     width: 44,
     height: 24,
@@ -215,7 +241,8 @@ export const PostRow = memo(
     a.post.likeCount === b.post.likeCount &&
     a.post.commentCount === b.post.commentCount &&
     a.selected === b.selected &&
-    a.dimmed === b.dimmed,
+    a.dimmed === b.dimmed &&
+    a.nextDx === b.nextDx,
 );
 
 export { HIT };

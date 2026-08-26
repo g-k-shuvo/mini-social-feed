@@ -1,0 +1,489 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-22T00:00:00Z",
+  "title": "Design System: Mini Social Feed",
+  "extensions": {
+    "colorMeta": {
+      "amber": {
+        "role": "primary",
+        "displayName": "Star Amber",
+        "canonical": "#FF4D2E",
+        "lightCounterpart": "#BE3617",
+        "tonalRamp": [
+          "#2A0B04",
+          "#4A1408",
+          "#6E1F0D",
+          "#952C13",
+          "#BE3617",
+          "#E8441F",
+          "#FF4D2E",
+          "#FF8C74"
+        ]
+      },
+      "amber-2": {
+        "role": "primary",
+        "displayName": "Ember",
+        "canonical": "#FFB36B",
+        "lightCounterpart": "#9A4A16",
+        "tonalRamp": [
+          "#2E1704",
+          "#4E2708",
+          "#70390D",
+          "#9A4A16",
+          "#C46520",
+          "#E58A3F",
+          "#FFB36B",
+          "#FFD3AC"
+        ]
+      },
+      "sel": {
+        "role": "secondary",
+        "displayName": "Chart Blue",
+        "canonical": "#24374F",
+        "lightCounterpart": "#C6D2DE",
+        "tonalRamp": [
+          "#0B121B",
+          "#131E2C",
+          "#1B2A3D",
+          "#24374F",
+          "#3A5573",
+          "#6E88A6",
+          "#8CA3BC",
+          "#C6D2DE"
+        ]
+      },
+      "sel-2": {
+        "role": "secondary",
+        "displayName": "Deep Indigo",
+        "canonical": "#16233D",
+        "lightCounterpart": "#D3DCE5",
+        "tonalRamp": [
+          "#080D18",
+          "#0E1729",
+          "#16233D",
+          "#233657",
+          "#354D77",
+          "#5872A0",
+          "#8DA2C4",
+          "#D3DCE5"
+        ]
+      },
+      "sky": {
+        "role": "neutral",
+        "displayName": "Night Sky",
+        "canonical": "#0A1021",
+        "lightCounterpart": "#E2E7EC",
+        "tonalRamp": [
+          "#05080F",
+          "#0A1021",
+          "#0E1729",
+          "#16233D",
+          "#2A3A55",
+          "#5C6C86",
+          "#A8B4C4",
+          "#E2E7EC"
+        ]
+      },
+      "plate": {
+        "role": "neutral",
+        "displayName": "Plate",
+        "canonical": "#0E1729",
+        "lightCounterpart": "#EEF2F6",
+        "tonalRamp": [
+          "#060A12",
+          "#0E1729",
+          "#16233D",
+          "#213152",
+          "#38496E",
+          "#6B7C9B",
+          "#B2BECE",
+          "#EEF2F6"
+        ]
+      },
+      "plate-2": {
+        "role": "neutral",
+        "displayName": "Plate Deep",
+        "canonical": "#16233D",
+        "lightCounterpart": "#D2DAE2",
+        "tonalRamp": [
+          "#070C15",
+          "#0E1729",
+          "#16233D",
+          "#223353",
+          "#3B4F73",
+          "#6E809E",
+          "#A6B3C4",
+          "#D2DAE2"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Chalk Ink",
+        "canonical": "#F2F2E9",
+        "lightCounterpart": "#101A2B",
+        "tonalRamp": [
+          "#101A2B",
+          "#28303C",
+          "#434B55",
+          "#666D75",
+          "#8F959C",
+          "#B9BDC0",
+          "#DCDCD6",
+          "#F2F2E9"
+        ]
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Dim Ink",
+        "canonical": "#9CAAC2",
+        "lightCounterpart": "#4E5C74",
+        "tonalRamp": [
+          "#131A25",
+          "#1F2A3A",
+          "#2F3E54",
+          "#3F4F68",
+          "#4E5C74",
+          "#71809A",
+          "#9CAAC2",
+          "#CBD4E1"
+        ]
+      },
+      "on-amber": {
+        "role": "neutral",
+        "displayName": "On-Amber",
+        "canonical": "#1A0803",
+        "lightCounterpart": "#FFF6F2"
+      },
+      "star": {
+        "role": "neutral",
+        "displayName": "Mark Fill",
+        "canonical": "#F2F2E9",
+        "lightCounterpart": "#101A2B",
+        "note": "Derived from the ink. Re-derive whenever the ink moves."
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display (Bodoni italic)",
+        "purpose": "Auth headline only. Always italic, weight 500."
+      },
+      "headline": {
+        "displayName": "Headline (Bodoni italic)",
+        "purpose": "Profile name; the open post's author in the tablet two-pane."
+      },
+      "title": {
+        "displayName": "Title (Bodoni italic)",
+        "purpose": "App bar title, dialog title, compose sheet title."
+      },
+      "who": {
+        "displayName": "Who (Bodoni italic)",
+        "purpose": "The author name on a feed row — the recognition anchor of the feed."
+      },
+      "body": {
+        "displayName": "Body (Jost)",
+        "purpose": "Post message text. Scales to 18px in detail, 21px in the wide pane."
+      },
+      "body-small": {
+        "displayName": "Body Small (Jost)",
+        "purpose": "Supporting prose: empty states, dialog body, setting descriptions. Capped at 32ch."
+      },
+      "label": {
+        "displayName": "Label (Jost tracked caps)",
+        "purpose": "Field labels, readout keys, count-cell keys, epoch caps. Amber when annotating the chart, dim ink when labelling a control."
+      },
+      "label-large": {
+        "displayName": "Label Large (Jost tracked caps)",
+        "purpose": "Chip text and navigation destination text."
+      },
+      "figure": {
+        "displayName": "Figure (Roboto Mono, tabular)",
+        "purpose": "Measured numbers only: counts, timestamps, handles, coordinates, clock, badges."
+      },
+      "figure-small": {
+        "displayName": "Figure Small (Roboto Mono, tabular)",
+        "purpose": "Row-level handles and timestamps."
+      }
+    },
+    "shadows": [
+      {
+        "name": "fab-rest",
+        "value": "0 3px 6px rgba(0,0,0,.32), 0 10px 24px -10px rgba(255,77,46,.6)",
+        "purpose": "The compact FAB. The warm second layer reads as amber glowing onto the plate."
+      },
+      {
+        "name": "fab-rail",
+        "value": "0 3px 6px rgba(0,0,0,.3)",
+        "purpose": "The docked rail FAB at expanded width. No warm layer."
+      },
+      {
+        "name": "transient-surface",
+        "value": "0 4px 8px rgba(0,0,0,.3), 0 16px 32px -18px rgba(0,0,0,.9)",
+        "purpose": "The snackbar — the only content-bearing surface that lifts off the plate."
+      },
+      {
+        "name": "mark-halo-dark",
+        "value": "0 0 0 3px var(--sky), 0 0 7px rgba(242,242,233,.45)",
+        "purpose": "Not elevation. A knockout ring so the magnitude mark reads clean where it crosses the filing axis, plus a faint stellar bloom. Dark theme only; the ring recolours to var(--sel) on a selected row."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-emphasized",
+        "value": "cubic-bezier(.16,1,.3,1)",
+        "purpose": "Entrances and the acquisition pulse: sheet rise, dialog rise, snackbar rise."
+      },
+      {
+        "name": "ease-standard",
+        "value": "cubic-bezier(.2,0,0,1)",
+        "purpose": "Material state changes: nav indicator, switch track and thumb."
+      },
+      {
+        "name": "acquire",
+        "value": "0.52s cubic-bezier(.16,1,.3,1) — 20px amber ring, scale .55→2.4, opacity .85→0",
+        "purpose": "The observation pulse. Fires exactly once per like; the reticle acquiring its object."
+      },
+      {
+        "name": "rise",
+        "value": "0.24–0.30s cubic-bezier(.16,1,.3,1) — translateY(22px)→0, opacity 0→1",
+        "purpose": "Bottom sheet, dialog and snackbar entrance."
+      },
+      {
+        "name": "shimmer",
+        "value": "1.5s ease-in-out infinite — opacity .5 ↔ 1",
+        "purpose": "Skeleton fills only."
+      },
+      {
+        "name": "sidereal-drift",
+        "value": "continuous canvas translation of the starfield layer",
+        "purpose": "The one ambient moment in the product. Parked entirely under prefers-reduced-motion."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "* { animation-duration: .01ms !important; transition-duration: .01ms !important }",
+        "purpose": "Everything collapses; the starfield drift stops."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "compact",
+        "value": "0–899dp — navigation bar, floating FAB, single column"
+      },
+      {
+        "name": "expanded",
+        "value": "900dp+ — 88px navigation rail, docked rail FAB, 420px list pane + fluid detail pane"
+      }
+    ],
+    "scales": [
+      {
+        "name": "magnitude-ramp",
+        "value": "[5, 7, 9, 12, 15] px at like thresholds 0 / 2 / 6 / 11 / 18",
+        "purpose": "A post's like count IS its mark diameter. Fixed and absolute; never rescaled to the visible page."
+      },
+      {
+        "name": "hit-target",
+        "value": "48dp",
+        "purpose": "Minimum size of every interactive target."
+      },
+      {
+        "name": "count-cell",
+        "value": "78 × 34 compact, 96 × 40 wide",
+        "purpose": "Fixed-width number cells so the eye stops hunting down the column."
+      },
+      {
+        "name": "mark-gutter",
+        "value": "44px row gutter, axis at x=27px, 34px gutter for comments",
+        "purpose": "Every mark lands on the unbroken filing axis."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Charted Object (feed row)",
+      "kind": "custom",
+      "refersTo": "count-cell",
+      "description": "The signature row. Magnitude mark on the filing axis, Bodoni italic author, mono handle and timestamp, Jost message, then fixed-width count cells. No card, no avatar.",
+      "html": "<div class=\"ds-obj\"><div class=\"ds-obj-mark\"><i style=\"width:12px;height:12px\"></i></div><div><div class=\"ds-obj-head\"><span class=\"ds-who\">Priya S.</span><span class=\"ds-at\">@priya</span><span class=\"ds-when\">6m</span></div><p class=\"ds-msg\">Shipping the feed today. Cursor pagination is in, counters are transactional, and the like toggle finally survives a double tap.</p><div class=\"ds-cells\"><button class=\"ds-cell\" data-on=\"1\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"5.2\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"12\" cy=\"12\" r=\"8.6\" opacity=\".5\"/></svg><span class=\"ds-n\">14</span></button><button class=\"ds-cell\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M20.4 12.6c0 3.8-3.8 6.9-8.4 6.9a10 10 0 0 1-2.6-.34L4.6 21l1.2-3.5A6.5 6.5 0 0 1 3.6 12.6c0-3.8 3.8-6.9 8.4-6.9s8.4 3.1 8.4 6.9Z\"/></svg><span class=\"ds-n\">3</span></button></div></div></div>",
+      "css": ".ds-obj { position: relative; display: grid; grid-template-columns: 44px 1fr; align-items: start; padding: 13px 16px 15px 0; border-bottom: 1px solid rgba(242,242,233,.11); background: #0A1021; color: #F2F2E9; font-family: Jost, ui-sans-serif, system-ui, sans-serif; } .ds-obj::before { content: \"\"; position: absolute; left: 27px; top: 0; bottom: 0; border-left: 1px dotted rgba(242,242,233,.30); } .ds-obj:hover { background: rgba(255,77,46,.14); } .ds-obj-mark { position: relative; height: 22px; display: grid; place-items: center; } .ds-obj-mark i { display: block; border-radius: 50%; background: #F2F2E9; box-shadow: 0 0 0 3px #0A1021, 0 0 7px rgba(242,242,233,.45); } .ds-obj-head { display: flex; align-items: baseline; gap: 9px; margin-bottom: 3px; } .ds-who { font-family: \"Bodoni Moda\", ui-serif, Georgia, serif; font-style: italic; font-weight: 500; font-size: 16.5px; letter-spacing: .005em; } .ds-at, .ds-when { font: 400 11px/1 \"Roboto Mono\", ui-monospace, monospace; color: #9CAAC2; } .ds-when { margin-left: auto; } .ds-msg { font-size: 15.5px; line-height: 1.55; margin: 0 0 10px; text-wrap: pretty; } .ds-cells { display: flex; gap: 8px; } .ds-cell { appearance: none; width: 78px; height: 34px; padding: 0 8px; display: inline-flex; align-items: center; gap: 7px; border: 1px solid rgba(242,242,233,.11); border-radius: 2px; background: transparent; color: #9CAAC2; cursor: pointer; } .ds-cell:hover { border-color: #FF4D2E; color: #F2F2E9; } .ds-cell:focus-visible { outline: 2px solid #FF4D2E; outline-offset: 2px; } .ds-cell[data-on=\"1\"] { color: #FF4D2E; border-color: #FF4D2E; } .ds-n { font: 500 12px/1 \"Roboto Mono\", ui-monospace, monospace; font-variant-numeric: tabular-nums; }"
+    },
+    {
+      "name": "Coordinate Band",
+      "kind": "custom",
+      "refersTo": "app-bar",
+      "description": "The ruled readout strip under the app bar, wearing the plate's amber corner registration ticks. States what the feed is currently showing.",
+      "html": "<div class=\"ds-band\"><div class=\"ds-band-cell\"><span class=\"ds-lbl\">Field</span><span class=\"ds-v\"><em>All sky</em></span></div><div class=\"ds-band-cell\"><span class=\"ds-lbl\">Objects</span><span class=\"ds-v ds-fig\">128 POSTS</span></div><div class=\"ds-band-cell\"><span class=\"ds-lbl\">Epoch</span><span class=\"ds-v ds-fig\">02:17</span></div></div>",
+      "css": ".ds-band { position: relative; display: flex; background: #0E1729; border-bottom: 1px solid rgba(242,242,233,.20); font-family: Jost, ui-sans-serif, system-ui, sans-serif; } .ds-band::before, .ds-band::after { content: \"\"; position: absolute; width: 7px; height: 7px; border: 1px solid #FF4D2E; opacity: .55; pointer-events: none; } .ds-band::before { top: 0; left: 0; border-right: 0; border-bottom: 0; } .ds-band::after { top: 0; right: 0; border-left: 0; border-bottom: 0; } .ds-band-cell { flex: 1 1 0; min-width: 0; padding: 7px 12px 8px; border-right: 1px solid rgba(242,242,233,.11); display: flex; flex-direction: column; gap: 3px; } .ds-band-cell:last-child { border-right: 0; } .ds-lbl { font: 600 10px/1 Jost, sans-serif; letter-spacing: .17em; text-transform: uppercase; color: #FF4D2E; } .ds-v { color: #F2F2E9; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } .ds-v em { font-family: \"Bodoni Moda\", ui-serif, Georgia, serif; font-style: italic; font-size: 13px; } .ds-fig { font: 400 12px/1 \"Roboto Mono\", ui-monospace, monospace; font-variant-numeric: tabular-nums; letter-spacing: -.01em; }"
+    },
+    {
+      "name": "Count Cell — four states",
+      "kind": "custom",
+      "refersTo": "count-cell",
+      "description": "The composer's character counter. Under / near / over / failed are four different forms, never four tints, so the states survive without hue.",
+      "html": "<div class=\"ds-cc-row\"><span class=\"ds-cc\" data-s=\"under\"><span class=\"ds-cc-k\">Chars</span><span class=\"ds-cc-n\">128</span></span><span class=\"ds-cc\" data-s=\"near\"><span class=\"ds-cc-k\">Chars</span><span class=\"ds-cc-n\">472</span></span><span class=\"ds-cc\" data-s=\"over\"><span class=\"ds-cc-k\">Chars</span><span class=\"ds-cc-n\">514</span></span><span class=\"ds-cc\" data-s=\"failed\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\"><circle cx=\"12\" cy=\"12\" r=\"8.4\"/><path d=\"M12 7.8v4.8M12 16.1h.01\"/></svg><span class=\"ds-cc-k\">Not sent</span></span></div>",
+      "css": ".ds-cc-row { display: flex; gap: 10px; flex-wrap: wrap; background: #0E1729; padding: 14px; } .ds-cc { display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 11px; border: 1px solid rgba(242,242,233,.20); border-radius: 2px; color: #9CAAC2; font-family: Jost, ui-sans-serif, system-ui, sans-serif; } .ds-cc-k { font: 600 9.5px/1 Jost, sans-serif; letter-spacing: .17em; text-transform: uppercase; } .ds-cc-n { font: 500 12.5px/1 \"Roboto Mono\", ui-monospace, monospace; font-variant-numeric: tabular-nums; } .ds-cc[data-s=\"near\"] { border-color: #FF4D2E; color: #FF4D2E; } .ds-cc[data-s=\"over\"] { background: #FF4D2E; border-color: #FF4D2E; color: #1A0803; } .ds-cc[data-s=\"failed\"] { border: 1px dashed #FF4D2E; color: #FF4D2E; background: rgba(255,77,46,.14); }"
+    },
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The amber commit action: sign in, post, retry. Tracked uppercase Jost on a near-square amber fill.",
+      "html": "<button class=\"ds-btn-primary\">Publish post</button>",
+      "css": ".ds-btn-primary { appearance: none; height: 50px; padding: 0 26px; border: 0; border-radius: 2px; background: #FF4D2E; color: #1A0803; font: 600 12.5px/1 Jost, ui-sans-serif, system-ui, sans-serif; letter-spacing: .16em; text-transform: uppercase; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 9px; } .ds-btn-primary:hover { filter: brightness(1.08); } .ds-btn-primary:active { transform: translateY(1px); } .ds-btn-primary:focus-visible { outline: 2px solid #FF4D2E; outline-offset: 2px; } .ds-btn-primary:disabled { opacity: .38; cursor: not-allowed; filter: none; }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "The secondary path. Amber stroke and amber text, no fill.",
+      "html": "<button class=\"ds-btn-out\">Discard</button>",
+      "css": ".ds-btn-out { appearance: none; height: 50px; padding: 0 26px; border: 1px solid #FF4D2E; border-radius: 2px; background: transparent; color: #FF4D2E; font: 600 12.5px/1 Jost, ui-sans-serif, system-ui, sans-serif; letter-spacing: .16em; text-transform: uppercase; cursor: pointer; } .ds-btn-out:hover { background: rgba(255,77,46,.14); } .ds-btn-out:focus-visible { outline: 2px solid #FF4D2E; outline-offset: 2px; }"
+    },
+    {
+      "name": "Filter Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "The feed's author filter rail. Rectilinear, tracked caps, amber fill when selected.",
+      "html": "<div class=\"ds-rail\"><button class=\"ds-chip\" aria-pressed=\"true\"><span class=\"ds-dot\"></span>All sky</button><button class=\"ds-chip\" aria-pressed=\"false\">@priya</button><button class=\"ds-chip\" aria-pressed=\"false\">@rahul</button></div>",
+      "css": ".ds-rail { display: flex; gap: 8px; padding: 11px 14px; background: #0A1021; border-bottom: 1px solid rgba(242,242,233,.11); } .ds-chip { appearance: none; flex: 0 0 auto; height: 34px; padding: 0 14px; border: 1px solid rgba(242,242,233,.20); border-radius: 2px; background: transparent; color: #9CAAC2; font: 500 12px/1 Jost, ui-sans-serif, system-ui, sans-serif; letter-spacing: .07em; text-transform: uppercase; cursor: pointer; display: inline-flex; align-items: center; gap: 7px; } .ds-chip:hover { color: #F2F2E9; border-color: #FF4D2E; } .ds-chip:focus-visible { outline: 2px solid #FF4D2E; outline-offset: 2px; } .ds-chip[aria-pressed=\"true\"] { background: #FF4D2E; border-color: #FF4D2E; color: #1A0803; } .ds-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: .8; }"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Transparent field on a rule-weight stroke. Focus doubles the stroke in amber rather than glowing.",
+      "html": "<div class=\"ds-field\"><label for=\"ds-u\">Username</label><input id=\"ds-u\" placeholder=\"priya\"><span class=\"ds-hint\">3–20 characters, letters and numbers.</span></div>",
+      "css": ".ds-field { font-family: Jost, ui-sans-serif, system-ui, sans-serif; background: #0A1021; padding: 14px; } .ds-field > label { display: block; font: 600 9.5px/1 Jost, sans-serif; letter-spacing: .17em; text-transform: uppercase; color: #9CAAC2; margin-bottom: 6px; } .ds-field input { width: 100%; background: transparent; border: 1px solid rgba(242,242,233,.20); border-radius: 2px; padding: 13px 12px; font-size: 15.5px; font-family: inherit; outline: 0; color: #F2F2E9; caret-color: #FF4D2E; } .ds-field input::placeholder { color: #9CAAC2; opacity: .75; } .ds-field input:focus { border-color: #FF4D2E; box-shadow: inset 0 0 0 1px #FF4D2E; } .ds-hint { display: block; margin-top: 6px; font-size: 12px; line-height: 1.45; color: #9CAAC2; }"
+    },
+    {
+      "name": "Navigation Bar",
+      "kind": "nav",
+      "refersTo": "nav-bar",
+      "description": "Material 3 navigation bar at compact width, themed into the plate. Selected destination goes amber with a Deep Indigo pill — never an amber field.",
+      "html": "<nav class=\"ds-navbar\"><button class=\"ds-dest\" aria-selected=\"true\"><span class=\"ds-pill\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"1.2\" stroke-width=\"1.8\"/><path d=\"M7.4 7.6 15.8 12.4 10.8 17\" stroke-width=\"1.4\" stroke-dasharray=\"1.6 2\"/><circle cx=\"7.4\" cy=\"7.6\" r=\"2.3\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"15.8\" cy=\"12.4\" r=\"1.6\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"10.8\" cy=\"17\" r=\"1.2\" fill=\"currentColor\" stroke=\"none\"/></svg></span><span class=\"ds-t\">Feed</span></button><button class=\"ds-dest\" aria-selected=\"false\"><span class=\"ds-pill\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M18 9a6 6 0 1 0-12 0c0 5.2-1.8 6.6-1.8 6.6h15.6S18 14.2 18 9Z\"/><path d=\"M10.3 19.2a2 2 0 0 0 3.4 0\"/></svg></span><span class=\"ds-t\">Signals</span><span class=\"ds-badge\">3</span></button><button class=\"ds-dest\" aria-selected=\"false\"><span class=\"ds-pill\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"8.2\" r=\"3.6\"/><path d=\"M4.8 20.2a7.2 7.2 0 0 1 14.4 0\"/></svg></span><span class=\"ds-t\">You</span></button></nav>",
+      "css": ".ds-navbar { height: 74px; display: flex; background: #0E1729; border-top: 1px solid rgba(242,242,233,.11); padding-bottom: 8px; font-family: Jost, ui-sans-serif, system-ui, sans-serif; } .ds-dest { flex: 1 1 0; appearance: none; border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; cursor: pointer; color: #9CAAC2; position: relative; padding-top: 6px; } .ds-pill { width: 60px; height: 30px; border-radius: 15px; display: grid; place-items: center; transition: background .18s cubic-bezier(.2,0,0,1); } .ds-t { font: 500 11px/1 Jost, sans-serif; letter-spacing: .05em; } .ds-dest:hover .ds-pill { background: rgba(255,77,46,.14); } .ds-dest:focus-visible { outline: 2px solid #FF4D2E; outline-offset: 2px; } .ds-dest[aria-selected=\"true\"] { color: #FF4D2E; } .ds-dest[aria-selected=\"true\"] .ds-pill { background: #16233D; } .ds-badge { position: absolute; top: 4px; left: calc(50% + 8px); min-width: 16px; height: 16px; border-radius: 8px; background: #FF4D2E; color: #1A0803; font: 500 10px/16px \"Roboto Mono\", ui-monospace, monospace; text-align: center; padding: 0 3px; }"
+    },
+    {
+      "name": "Empty State",
+      "kind": "custom",
+      "refersTo": "button-primary",
+      "description": "A designed blank, not a fallback. Amber glyph, Bodoni italic headline, one line of plain copy, one action.",
+      "html": "<div class=\"ds-blank\"><span class=\"ds-glyph\"><svg width=\"34\" height=\"34\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"7\"/><circle cx=\"12\" cy=\"12\" r=\"1.6\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M12 2.4v3.2M12 18.4v3.2M2.4 12h3.2M18.4 12h3.2\"/></svg></span><h3>Nothing charted yet</h3><p>Say something first.</p><button class=\"ds-blank-btn\">Write a post</button></div>",
+      "css": ".ds-blank { padding: 54px 34px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 14px; background: #0A1021; color: #F2F2E9; font-family: Jost, ui-sans-serif, system-ui, sans-serif; } .ds-glyph { color: #FF4D2E; opacity: .85; display: block; } .ds-blank h3 { font-family: \"Bodoni Moda\", ui-serif, Georgia, serif; font-style: italic; font-weight: 500; font-size: 22px; margin: 0; text-wrap: balance; } .ds-blank p { margin: 0; font-size: 13.5px; line-height: 1.6; color: #9CAAC2; max-width: 32ch; } .ds-blank-btn { appearance: none; height: 44px; padding: 0 24px; margin-top: 4px; border: 0; border-radius: 2px; background: #FF4D2E; color: #1A0803; font: 600 12.5px/1 Jost, sans-serif; letter-spacing: .16em; text-transform: uppercase; cursor: pointer; } .ds-blank-btn:hover { filter: brightness(1.08); } .ds-blank-btn:focus-visible { outline: 2px solid #FF4D2E; outline-offset: 2px; }"
+    },
+    {
+      "name": "Offline Bar",
+      "kind": "custom",
+      "refersTo": "nav-bar",
+      "description": "The connectivity state, ruled top and bottom in amber over the amber tint — the tint's legitimate use as a transient wash.",
+      "html": "<div class=\"ds-offline\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 4l16 16\"/><path d=\"M17.5 17.5H7a4 4 0 0 1-.6-7.96\"/><path d=\"M9.4 6.6A5.4 5.4 0 0 1 18 10.4a3.6 3.6 0 0 1 2.4 5.5\"/></svg><span>Offline — showing saved posts</span></div>",
+      "css": ".ds-offline { display: flex; align-items: center; gap: 9px; padding: 9px 16px; background: rgba(255,77,46,.14); color: #FF4D2E; border-top: 1px solid #FF4D2E; border-bottom: 1px solid #FF4D2E; font-family: Jost, ui-sans-serif, system-ui, sans-serif; } .ds-offline span { font: 600 10.5px/1.3 Jost, sans-serif; letter-spacing: .13em; text-transform: uppercase; white-space: nowrap; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Star Atlas",
+    "overview": "The feed is a night plate at the eyepiece. Every post is a charted object, not a card: a filled magnitude mark sitting on one unbroken dotted axis, with an italic name beside it and the message text running out to the right. Hierarchy is carried entirely by mark diameter, which is a direct function of a post's like count. Nothing is boxed, nothing is elevated to signal importance, and there are no avatar circles in the feed row at all. The plate is ruled, rectilinear and dense — hairline rules, tracked amber caps, corner registration ticks, tabular figures in fixed cells.\n\nTwo themes, and neither is the inversion of the other. Dark is the sky at the eyepiece: night-navy ground, chalk-white marks that carry a faint glow. Light is the same atlas printed as a cool photographic plate — blue-grey stock, deep-indigo ink, marks filled dark. The light theme is deliberately cool; a warm-paper reading was tried and rejected, because a warm ground competes with the one warm thing on screen.\n\nThat one warm thing is star amber, and it is a signal, never a field. Material 3 governs the structure — navigation bar, navigation rail, bottom sheet, chips, switch, FAB, snackbar — and the world expresses itself through Material's colour roles, type scale, shape scale and motion. Components are themed into the atlas; they are never replaced by hand-built lookalikes.",
+    "keyCharacteristics": [
+      "Marks, not cards: like count is mark diameter on a fixed five-step ramp [5, 7, 9, 12, 15] px.",
+      "One unbroken dotted filing axis joining every mark down the whole feed.",
+      "Three voices: Bodoni Moda italic for names and titles, Jost for UI and body, Roboto Mono for figures only.",
+      "Amber is a signal, never a field; selection surfaces are chart blue.",
+      "Sharp shape scale (2px cells, 4px sheets); circles reserved for marks and Material affordances.",
+      "Exactly one ambient motion in the whole product, and it parks under reduced motion."
+    ],
+    "rules": [
+      {
+        "name": "The Signal-Not-Field Rule",
+        "body": "Amber marks a thing; it never becomes the surface a thing sits on. Selection is Chart Blue (#24374F) and Deep Indigo (#16233D). The amber tint is a transient wash only — row hover, the offline bar, the failed count cell — and is never the resting background of a selected or active item.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Warm Thing Rule",
+        "body": "Star amber is the only warm hue in either theme. If a second warm colour appears on screen, one of them is wrong. This is why the light theme is cool blue-grey stock and not cream paper.",
+        "section": "colors"
+      },
+      {
+        "name": "The Derived Ink Rule",
+        "body": "Identity colour is never hand-picked. inkFor(id) hashes the user id, steps it to one of nine positions in a bounded arc around amber's hue (12° ± 60°, in 15° steps), and returns hsl(h, 78%, 58%) in dark or hsl(h, 62%, 34%) in light. Adding a user requires no colour decision.",
+        "section": "colors"
+      },
+      {
+        "name": "The Form-Too Rule",
+        "body": "Colour never carries meaning alone. Liked, unread, over-limit and failed each read through form — a filled mark, a dot, a different border style, a glyph — as well as through hue.",
+        "section": "colors"
+      },
+      {
+        "name": "The Re-Derive Rule",
+        "body": "Every value tinted from the ink - the mark fill, the scrim, the skeleton - is derived from it and must be re-derived whenever the ink moves. Resolved history: when the light theme was recooled from warm stardust paper to a cool photographic plate, --ink moved to #101A2B but the mark fill, scrim and skeleton were left trailing the earlier #131C2E. Both surfaces are now aligned on #101A2B. A derived token must be re-derived when its source changes, and a port must not round the ramp it is porting.",
+        "section": "colors"
+      },
+      {
+        "name": "The Three Voices Rule",
+        "body": "Bodoni names, Jost speaks, Roboto Mono measures. A number that can change goes in mono with tabular figures. A person's name goes in Bodoni italic. Everything else is Jost. No face crosses into another's job.",
+        "section": "typography"
+      },
+      {
+        "name": "The Italic-Only Display Rule",
+        "body": "Bodoni Moda ships in exactly one style — italic, weight 500. There is no upright display cut anywhere in the build; a roman Bodoni would read as a different world.",
+        "section": "typography"
+      },
+      {
+        "name": "The Unbroken Axis Rule",
+        "body": "One dotted 1px line runs the full height of the feed at x=27px, behind every row, joining every mark. It is constellation linework, not a divider — it must never break at a row boundary, a time block, or a page boundary.",
+        "section": "layout"
+      },
+      {
+        "name": "The Fixed Cell Rule",
+        "body": "A number lives in a cell of fixed width. Cells never shrink-wrap their content.",
+        "section": "layout"
+      },
+      {
+        "name": "The Flat-Plate Rule",
+        "body": "Content is never elevated. If a surface has a shadow it is a Material overlay — sheet, dialog, snackbar, FAB — temporarily above the plate, and its shadow is soft and diffuse. Hard offset shadows do not exist in this world.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Registration Tick Rule",
+        "body": "Corner ticks are two 7px amber L-brackets at the top-left and top-right of a surface, at 0.55 opacity. They mark the plate's readout surfaces — the coordinate band and the readout tables — and nothing else. They are registration marks, not decoration; putting them on an arbitrary container empties them of meaning.",
+        "section": "shapes"
+      },
+      {
+        "name": "The Magnitude Rule",
+        "body": "A post's like count is its mark diameter, on a fixed five-step ramp — [5, 7, 9, 12, 15] px at thresholds 0 / 2 / 6 / 11 / 18 likes. The ramp is absolute and never rescaled to the visible page, because two identical posts must draw identically on every screen. This is the only hierarchy mechanism in the feed, and it is why there are no cards and no avatars.",
+        "section": "components"
+      },
+      {
+        "name": "The Four Forms Rule",
+        "body": "In the composer, the character counter has four states and they are four different forms, not four tints: under is a hairline outline in dim ink, near is an amber outline, over is a solid amber fill with on-amber text, and failed is a dashed amber outline with an amber-tint wash and a warning glyph. A reader who cannot separate the hues still reads all four.",
+        "section": "components"
+      },
+      {
+        "name": "The One Ambient Moment Rule",
+        "body": "The starfield drift is the only thing that moves on its own. Everything else is discrete, damped, and a direct response to a tap.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "Do size a post's mark from the fixed ramp [5, 7, 9, 12, 15] and let mark size carry all feed hierarchy.",
+      "Do run the dotted filing axis unbroken behind the entire list at x=27px.",
+      "Do put every number in a fixed-width cell, in Roboto Mono with tabular figures.",
+      "Do use Chart Blue (#24374F) and Deep Indigo (#16233D) for every selected, active, or unread surface.",
+      "Do theme Material 3 components — nav bar, nav rail, bottom sheet, chips, switch, FAB, snackbar — rather than rebuilding lookalikes.",
+      "Do give every state a distinct form as well as a distinct colour.",
+      "Do keep the light theme cool: blue-grey stock and indigo ink, so amber stays the only warm thing.",
+      "Do author icons as SVG at 1.5 stroke weight in a 24 box, matching the existing set.",
+      "Do hold a 48dp minimum on every target and verify layouts at 1.3× font scale."
+    ],
+    "donts": [
+      "Don't put a post in a card. No boxed, shadowed, or rounded container around a feed row.",
+      "Don't put an avatar circle in a feed row. The generated initials disc belongs on profiles and notifications only.",
+      "Don't use the amber tint as a resting surface for a selected or active item. It is hover, the offline bar and the failed cell — nothing else.",
+      "Don't rescale the magnitude ramp to the data on screen. It is absolute.",
+      "Don't set Bodoni Moda upright, or use it for body copy, UI labels, or numbers.",
+      "Don't use Roboto Mono for anything that is not a measured figure.",
+      "Don't add a second ambient animation. There is one, and it is the starfield.",
+      "Don't add a shadow to content, or a hard offset shadow anywhere.",
+      "Don't scatter corner ticks onto containers that are not readout surfaces.",
+      "Don't hand-pick a user's identity colour; derive it with inkFor().",
+      "Don't rename the product's nouns to fit the world. They are fixed: post, comment, like, feed, user, username — never \"observation\", \"log\", \"sighting\" or \"sky\"."
+    ]
+  }
+}

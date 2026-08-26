@@ -3,7 +3,7 @@ import { FlatList, Pressable, RefreshControl, ScrollView, StyleSheet, Text, View
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { useTheme } from '../../src/theme/ThemeProvider';
-import { space, type as T, inkFor, radius } from '../../src/theme/tokens';
+import { space, type as T, inkFor, offsetOf, radius } from '../../src/theme/tokens';
 import { useFeed, usePeople, useToggleLike } from '../../src/api/hooks';
 import { PostRow } from '../../src/components/PostRow';
 import { AppBar, Band, Blank, Button, ErrorState, FeedSkeleton, IconButton } from '../../src/components/chrome';
@@ -13,7 +13,9 @@ import { ApiError } from '../../src/api/client';
 import type { Post, SessionUser } from '../../src/api/types';
 import { PostDetailPane } from '../../src/features/post/PostDetailPane';
 
-type Row = { kind: 'epoch'; key: string; label: string } | { kind: 'post'; key: string; post: Post };
+type Row =
+  | { kind: 'epoch'; key: string; label: string }
+  | { kind: 'post'; key: string; post: Post; nextDx?: number };
 
 export default function Feed() {
   const { c, isExpanded } = useTheme();
@@ -44,6 +46,13 @@ export default function Feed() {
       }
       out.push({ kind: 'post', key: post.id, post });
     }
+    // Walk back through and tell each object where the next one sits, so the
+    // constellation is continuous across the epoch breaks too.
+    const objects = out.filter((r): r is Extract<Row, { kind: 'post' }> => r.kind === 'post');
+    objects.forEach((row, i) => {
+      const next = objects[i + 1];
+      if (next) row.nextDx = offsetOf(next.post.id);
+    });
     return out;
   }, [posts]);
 
@@ -141,6 +150,7 @@ export default function Feed() {
           ) : (
             <PostRow
               post={item.post}
+              nextDx={item.nextDx}
               onOpen={open}
               onLike={onLike}
               selected={isExpanded && selected === item.post.id}
@@ -192,14 +202,9 @@ export default function Feed() {
       />
       {listHeader}
       <View style={{ flex: 1 }}>
-        {/* The filing axis: one dotted line behind the whole list, joining
-            every magnitude mark. Absolute, so it never indents the content. */}
-        {posts.length > 0 ? (
-          <View
-            pointerEvents="none"
-            style={[s.axis, { borderLeftColor: c.axis }]}
-          />
-        ) : null}
+        {/* The filing axis is drawn per row now, as a segment from each mark
+            to the next, so the marks are joined into one bending figure rather
+            than sitting beside a straight rule. See PostRow's `thread`. */}
         {body()}
       </View>
     </View>
@@ -299,15 +304,6 @@ const s = StyleSheet.create({
     paddingTop: 26,
     paddingBottom: 9,
     paddingHorizontal: space.lg,
-  },
-  axis: {
-    position: 'absolute',
-    left: 27,
-    top: 0,
-    bottom: 0,
-    width: 0,
-    borderLeftWidth: 1,
-    borderStyle: 'dotted',
   },
   pane: { width: 420, borderRightWidth: 1 },
   fab: {
