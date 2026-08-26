@@ -1,0 +1,14 @@
+# Reviewed exceptions. One line per finding, by exact fingerprint
+# (commit:file:rule:line), so it can never mask anything else — a real
+# secret in a different commit, file, or line still fails the build.
+
+# The initial commit's CI workflow set JWT_ACCESS_SECRET to the literal
+# "ci-secret-that-is-definitely-long-enough-32chars". It was never a
+# credential: it existed only so the backend's boot-time env validation
+# would pass in CI, and it signed tokens for a Postgres container that is
+# destroyed with the runner. It is not valid against any deployed
+# environment. The workflow now mints a random value per run, so no such
+# literal exists going forward; this entry covers the historical commit
+# only, because rewriting already-published public history is a
+# disproportionate response to a string that unlocks nothing.
+807e15ecdb21741b76d351a6f7313a0745b8ab4f:.github/workflows/ci.yml:generic-api-key:30

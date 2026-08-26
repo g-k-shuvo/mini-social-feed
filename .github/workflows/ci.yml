@@ -27,7 +27,6 @@ jobs:
     env:
       DATABASE_URL: postgresql://minisocial:minisocial@localhost:5433/minisocial?schema=public
       TEST_ADMIN_URL: postgresql://minisocial:minisocial@localhost:5433/postgres
-      JWT_ACCESS_SECRET: ci-secret-that-is-definitely-long-enough-32chars
 
     steps:
       - uses: actions/checkout@v5
@@ -37,6 +36,11 @@ jobs:
           cache: npm
           cache-dependency-path: backend/package-lock.json
       - run: npm ci
+      # Minted per run rather than committed. A literal here is indis-
+      # tinguishable from a real credential to any scanner, and to anyone
+      # reading the file.
+      - name: Mint a throwaway signing secret for this run
+        run: echo "JWT_ACCESS_SECRET=$(openssl rand -hex 48)" >> "$GITHUB_ENV"
       - run: npx prisma generate
       - run: npm run typecheck
       - run: npx prisma migrate deploy
