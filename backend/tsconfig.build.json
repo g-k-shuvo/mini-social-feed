@@ -1,0 +1,13 @@
+{
+  // Emit config. The base tsconfig deliberately includes prisma/ and tests/ so
+  // `typecheck` covers them, but including them in the *build* makes tsc pick
+  // "." as the common root and emit dist/src/server.js instead of
+  // dist/server.js — which start would then fail to find in production.
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist"
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "dist", "tests", "prisma"]
+}
