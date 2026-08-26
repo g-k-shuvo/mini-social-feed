@@ -14,9 +14,15 @@ services:
     rootDir: backend
     region: oregon
 
+    # --include=dev is not optional. NODE_ENV=production below applies to the
+    # build as well as the runtime, and npm honours it by skipping
+    # devDependencies — which is where typescript and every @types package
+    # live. Without this the compile fails on hundreds of implicit-any errors
+    # for modules that are installed but have no declarations.
+    #
     # migrate deploy runs on every build, and uses DIRECT_URL because a
     # connection pooler cannot run DDL.
-    buildCommand: npm ci && npx prisma generate && npm run build && npx prisma migrate deploy
+    buildCommand: npm ci --include=dev && npx prisma generate && npm run build && npx prisma migrate deploy
     startCommand: npm start
 
     # Render restarts the instance if this stops answering. The route is

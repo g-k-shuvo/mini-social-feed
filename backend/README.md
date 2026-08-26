@@ -361,6 +361,8 @@ Eight of them exist because each maps to a specific bug this design prevents:
 
 **Verify:** `curl https://<your-service>.onrender.com/health` → `{"status":"ok","db":"ok"}`.
 
+`--include=dev` in the build command is load-bearing. `NODE_ENV=production` applies to the build as well as the runtime, and npm honours it by skipping devDependencies — which is where `typescript` and every `@types` package live. Drop the flag and the compile fails with a wall of implicit-`any` errors about modules that are installed but have no declarations.
+
 > The free web service sleeps after ~15 minutes idle and takes roughly 50 seconds to wake. The app already handles this: a 20-second client timeout with *"That took too long. The server may be waking up."* rather than a bare failure. Warm it up before a demo.
 
 Why the two URLs: the pooler in front of `DATABASE_URL` is right for an instance that sleeps and wakes, but it cannot run DDL, so Prisma is configured with `directUrl` and migrations use the unpooled endpoint.
